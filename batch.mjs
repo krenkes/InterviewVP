@@ -85,7 +85,8 @@ let batch = {
         this.batchNumber = batchNumber;
         let initialWeight = this.getInitialWeight(batchWeight, initial, desired);
         if (initialWeight !== true) {
-            return initialWeight
+            console.log(initialWeight)
+            return
         }
         this.sumFinalWeight = this.ratioMax * this.batchWeight;
         for (let x in this.desired) {
@@ -93,7 +94,9 @@ let batch = {
             this.addWeightPerElement[x] = Math.abs(Math.round((this.finalWeight[x] - this.initialWeight[x])*1000000)/1000000)
             this.percentFinal[x]  = Math.round(100*this.finalWeight[x]/this.sumFinalWeight*10000)/10000
         }
+        console.log("Add the following amount of each element to reach desired percentages:")
         console.log(this.addWeightPerElement)
+        console.log("Calculated Final Percentages:")
         console.log(this.percentFinal)
         return batch
     }
